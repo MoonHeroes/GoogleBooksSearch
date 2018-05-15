@@ -75,6 +75,8 @@ public class ResultSearchActivity extends AppCompatActivity {
                         Context context = getApplicationContext();
                         Toast toast = Toast.makeText(context, bookImageUrl, Toast.LENGTH_SHORT);
                         toast.show();
+
+                        new DownloadImageTask((ImageView) findViewById(R.id.bookImageView)).execute(bookImageUrl);
                     }
                 }
 
