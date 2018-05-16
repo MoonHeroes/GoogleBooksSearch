@@ -155,7 +155,7 @@ public class ResultSearchRecyclerView extends AppCompatActivity{
     private void parseJSON(){
         String url = "https://www.googleapis.com/books/v1/volumes?q=" + searchString;
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
         new Response.Listener<JSONObject>(){
             @Override
             public void onResponse(JSONObject response){
@@ -173,7 +173,16 @@ public class ResultSearchRecyclerView extends AppCompatActivity{
                         }
 
                         if(arr.getJSONObject(i).getJSONObject("volumeInfo").has("authors")){
-                             author = volumeInfo.getString("authors");
+                            JSONObject authorsobject = arr.getJSONObject(i).getJSONObject("volumeInfo");
+                            JSONArray authors = authorsobject.getJSONArray("authors");
+                            if (authors.length() != 1) {
+                                for (int j = 0; j < authors.length(); j++) {
+                                    author = author + ", " + authors.getString(j);
+                                }
+                            }
+                            else{
+                                author = authors.getString(0);
+                            }
                         }
 
                         if(arr.getJSONObject(i).getJSONObject("volumeInfo").has("publishedDate")){
