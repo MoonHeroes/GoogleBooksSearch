@@ -122,7 +122,7 @@ public class ResultSearchActivity extends AppCompatActivity {
         setContentView(R.layout.result_search_activity);
 
         Intent intent = getIntent();
-        String isbnString = intent.getExtras().getString("ISBN");
+        String isbnString = intent.getExtras().getString("URL");
 
         mTextView = (TextView) findViewById(R.id.textView);
         mTextView.setText(isbnString);
