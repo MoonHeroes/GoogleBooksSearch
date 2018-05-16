@@ -22,6 +22,17 @@ import java.util.ArrayList;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
     private Context mContext;
     private ArrayList<ItemBook> mItemBooks;
+    private  OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onItemClick (int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
+
+
 
     public BookAdapter(Context context, ArrayList<ItemBook> itemBooks){
         mContext = context;
