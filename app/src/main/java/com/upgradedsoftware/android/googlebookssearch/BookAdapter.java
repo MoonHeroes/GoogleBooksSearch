@@ -22,7 +22,8 @@ import java.util.ArrayList;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
     private Context mContext;
     private ArrayList<ItemBook> mItemBooks;
-    private  OnItemClickListener mListener;
+    private OnItemClickListener mListener;
+
 
     public interface OnItemClickListener{
         void onItemClick (int position);
@@ -81,6 +82,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             mTextViewAuthor = itemView.findViewById(R.id.text_view_authors);
             mTextViewPublishedDate = itemView.findViewById(R.id.text_view_published_date);
             mTextViewTitle = itemView.findViewById(R.id.text_view_title);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    if (mListener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
 
     }

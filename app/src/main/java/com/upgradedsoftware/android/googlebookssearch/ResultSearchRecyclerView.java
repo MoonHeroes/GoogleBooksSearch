@@ -30,7 +30,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ResultSearchRecyclerView extends AppCompatActivity{
+public class ResultSearchRecyclerView extends AppCompatActivity implements BookAdapter.OnItemClickListener{
+
+    public static final String EXTRA_URL="imageUrl";
+    public static final String EXTRA_AUTHOR="authorName";
+    public static final String EXTRA_TITLE="titleName";
+    public static final String EXTRA_DATE="dateName";
+
 
     private RecyclerView mRecyclerView;
     private BookAdapter mBookAdapter;
@@ -38,6 +44,20 @@ public class ResultSearchRecyclerView extends AppCompatActivity{
     private RequestQueue mRequestQueue;
     private String bookImageUrl;
     private String searchString;
+
+    @Override
+    public void onItemClick(int position) {
+        Intent detaiIntent = new Intent(this, DetailBookActivity.class);
+        ItemBook clickedItem = mItemBooks.get(position);
+
+        detaiIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
+        detaiIntent.putExtra(EXTRA_AUTHOR, clickedItem.getAuthor());
+        detaiIntent.putExtra(EXTRA_TITLE, clickedItem.getTitle());
+        detaiIntent.putExtra(EXTRA_DATE, clickedItem.getPublishedDate());
+
+        startActivity(detaiIntent);
+
+    }
 
     public class DownloadTask extends AsyncTask<String,Void,String> {
 
@@ -198,6 +218,7 @@ public class ResultSearchRecyclerView extends AppCompatActivity{
 
                     mBookAdapter = new BookAdapter(ResultSearchRecyclerView.this, mItemBooks);
                     mRecyclerView.setAdapter(mBookAdapter);
+                    mBookAdapter.setOnItemClickListener(ResultSearchRecyclerView.this);
 
                 } catch (JSONException e){
                     e.printStackTrace();

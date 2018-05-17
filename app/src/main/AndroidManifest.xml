@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".ResultSearchActivity"/>
         <activity android:name=".ResultSearchRecyclerView"/>
+        <activity android:name=".DetailBookActivity"/>
     </application>
 
 </manifest>
