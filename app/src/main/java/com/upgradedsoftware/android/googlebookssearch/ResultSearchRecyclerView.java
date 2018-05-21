@@ -197,7 +197,7 @@ public class ResultSearchRecyclerView extends AppCompatActivity implements BookA
                             JSONArray authors = authorsobject.getJSONArray("authors");
                             if (authors.length() != 1) {
                                 for (int j = 0; j < authors.length(); j++) {
-                                    author = author + ", " + authors.getString(j);
+                                    author = author + authors.getString(j) + "  ";
                                 }
                             }
                             else{

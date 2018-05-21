@@ -8,7 +8,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +77,7 @@ public class ResultSearchActivity extends AppCompatActivity {
                         Context context = getApplicationContext();
                         Toast toast = Toast.makeText(context, bookImageUrl, Toast.LENGTH_SHORT);
                         toast.show();
+
 
                         new DownloadImageTask((ImageView) findViewById(R.id.bookImageView)).execute(bookImageUrl);
                     }
